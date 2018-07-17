@@ -2,14 +2,14 @@
 
 __Aprende a comandos basicos de git__
 
-``bash
+```bash
 $ git commit
-`` 
+``` 
 _(commitear tu archivo)_
-⋅
-``bash
+___
+```bash
 $git branch <nombre>
-``
+```
 _(crear una rama nueva)_
-*
+***
 
