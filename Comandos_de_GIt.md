@@ -10,7 +10,7 @@ _(commitear tu archivo)_
 $git branch <nombre>
 ```
 _(crear una rama nueva)_
-``bash
+```bash
 $ git checkout  <name>
 ```
 _(situarnos en )_
