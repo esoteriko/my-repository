@@ -6,4 +6,6 @@ end
 
 @date = gets
 @hours = gets
-client.index index: 'horas_v1', type: 'datos', body:{date: @date, hours: @hours}# my-repository
+client.index index: 'horas_v1', type: 'datos', body:{date: @date, hours: @hours}
+
+puts 'hola que tal'
