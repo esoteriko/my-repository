@@ -19,7 +19,7 @@ un punto ⋅⋅* punto y espacio
 -punto dos
 *punto tres
 
-...espacio de tres
+⋅⋅⋅Yespacio de tres
 
 [LINKS A UNA CARPETA DEL REPOSItORIO](../blob/master/LICENSE)
 [LINKS BASICOS](https://www.google.com)
