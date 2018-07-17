@@ -1,4 +1,8 @@
 # Elastic Comands
+***
+Requiere tener instaldo Elasticsearch y Docker
+para instalar Elasticsearch da click [aqui](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html)
+para instalar docker da click [aqui](https://www.docker.com/)
 
 ***
 ```bash
