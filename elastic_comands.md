@@ -8,28 +8,34 @@ _(cerrar el ES)_
 ```json
 sudo service elasticsearch start
 ```
-_(matar el ES sin docker)_
-
+_(iniciar el ES)_
+```json
 docker run -p 9200:9200 elasticsearch
-(Iniciar el elasticsearch )
-
+```
+_(Iniciar el elasticsearch con Docker)_
+```json
 curl -X GET "localhost:9200/_cat/health?v"
-(Ver tu cluster)
-
+```
+_(Ver tu cluster)_
+```json
 curl -X GET "localhost:9200/_cat/nodes?v"
-(ver tus nodos)
+```
+_(ver tus nodos)_
+```json
+curl -X PUT "localhost:9200/index_name?pretty"
+```
+_(crear un index, el index “index_name”)_
+```json
+curl -X POST "localhost:9200/index_name/_doc?pretty" -H 'Content-Type: application/json' -d'
 
-curl -X PUT "localhost:9200/customer?pretty"
-(crear un index, el index “customer”)
-
-curl -X POST "localhost:9200/customer/_doc?pretty" -H 'Content-Type: application/json' -d'
 {
   "name": "Jane Doe"
 }
 '
-(agregar datos a un index sin ID)
-
-curl -X PUT "localhost:9200/customer/employee/2?pretty" -H 'Content-Type: application/json' -d'
+```
+_(agregar datos a un index sin la ID que se genera automaticamente)_
+```json
+curl -X PUT "localhost:9200/index_name/type_name?pretty" -H 'Content-Type: application/json' -d'
 {
     "first_name" : "saul",
     "last_name" :  "Smith",
@@ -38,18 +44,22 @@ curl -X PUT "localhost:9200/customer/employee/2?pretty" -H 'Content-Type: applic
     "interests": [ "sports", "music" ]
 }
 ' 
-(agregar datos a un index)(indexear)
-
-curl -X GET "localhost:9200/megacorp/employee/1"
-(consultar datos de un index especifico, type especifico y id del type especifico)
-
-curl -X GET "localhost:9200/megacorp/employee/_search"
-(hacer una busqueda en un index específico y type especifico)
-
-curl -X GET "localhost:9200/megacorp/employee/_search?q=last_name:Smith" | jq
-(primera manera)(Hacer querys con datos que pueden tener varios types )
-
-curl -X GET "localhost:9200/megacorp/employee/_search?pretty" -H 'Content-Type: application/json' -d'
+```
+_(agregar mas datos a un index)(indexear)_
+```json
+curl -X GET "localhost:9200/index_name/type_name/1" -H 'Content-Type: application/json' -d'
+```
+_(consultar datos de un index con una id especifica "1")_
+```json
+curl -X GET "localhost:9200/index_name/type_name/_search"
+```
+_(hacer una busqueda en un index específico y type especifico)_
+```json
+curl -X GET "localhost:9200/index_name/type_name/_search?q=last_name:Smith" | jq
+```
+_(hacer una busqueda con un valor)(Encuentra "Smith" en el campo "last_name")_
+```json
+curl -X GET "localhost:9200/index_name/type_name/_search?pretty" -H 'Content-Type: application/json' -d'
 {
     "query" : {
         "match" : {
@@ -58,11 +68,10 @@ curl -X GET "localhost:9200/megacorp/employee/_search?pretty" -H 'Content-Type: 
     }
 }
 '
-(segunda manera)(Hacer querys con datos que pueden tener varios types )
-
-
-
-curl -X GET "localhost:9200/megacorp/employee/_search?pretty"   -H 'Content-Type: application/json' -d'
+```
+_(hacer una busqueda estructurada)_
+```json
+curl -X GET "localhost:9200/index_name/type_name/_search?pretty"   -H 'Content-Type: application/json' -d'
 {
     "query" : {
         "bool" : {
@@ -80,31 +89,8 @@ curl -X GET "localhost:9200/megacorp/employee/_search?pretty"   -H 'Content-Type
     }
 }
 '
-(filtrar y hacer búsquedas)
-
-curl -X GET "localhost:9200/megacorp/employee/_search?pretty" -H 'Content-Type: application/json' -d'
-{
-    "query" : {
-        "match" : {
-            "about" : "rock climbing"
-        }
-    }
-}
-'
-(segunda manera)(Hacer querys con datos que pueden tener varios types con palabras clave)
-curl -X GET "localhost:9200/megacorp/employee/_search" -H 'Content-Type: application/json' -d'
-{
-    "aggs" : {
-        "all_interests" : {
-            "terms" : { "field" : "interests" },
-            "aggs" : {
-                "avg_age" : {
-                    "avg" : { "field" : "age" }
-                }
-            }
-        }
-    }
-}
-'
+```
+_(filtrar y hacer búsquedas)_
+***
 
 
